@@ -51,7 +51,7 @@ namespace PwnedPasswordValidator
             };
 
             // Configure validation logic for passwords
-            manager.PasswordValidator = new eInfinity.AspNet.Identity.PwnedPasswordValidator(
+            manager.PasswordValidator = new eInfinity.AspNet.Identity.HIBPPasswordValidator(
                 new PasswordValidator
                 {
                     RequiredLength = 6,

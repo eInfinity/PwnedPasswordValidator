@@ -215,8 +215,9 @@ namespace PwnedPasswordValidator.Controllers
 
         //
         // GET: /Manage/ChangePassword
-        public ActionResult ChangePassword()
+        public ActionResult ChangePassword(ManageMessageId? messageId)
         {
+            ViewBag.StatusMessage = messageId == ManageMessageId.PasswordBreached ? "It looks like your password may have been breached. We recommend you change it now" : "";
             return View();
         }
 
@@ -381,7 +382,8 @@ namespace PwnedPasswordValidator.Controllers
             SetPasswordSuccess,
             RemoveLoginSuccess,
             RemovePhoneSuccess,
-            Error
+            Error,
+            PasswordBreached
         }
 
 #endregion

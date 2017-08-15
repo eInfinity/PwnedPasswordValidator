@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using PwnedPasswordValidator.Models;
+using eInfinity.AspNet.Identity;
 
 namespace PwnedPasswordValidator.Controllers
 {
@@ -79,7 +80,12 @@ namespace PwnedPasswordValidator.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    var validator = new HIBPPasswordValidator();
+                    var validationResult = await validator.ValidateAsync(model.Password);
+                    if (validationResult.Succeeded)
+                        return RedirectToLocal(returnUrl);
+                    else
+                        return RedirectToAction("ChangePassword", "Manage", new { });
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
