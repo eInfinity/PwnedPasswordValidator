@@ -85,7 +85,7 @@ namespace PwnedPasswordValidator.Controllers
                     if (validationResult.Succeeded)
                         return RedirectToLocal(returnUrl);
                     else
-                        return RedirectToAction("ChangePassword", "Manage", new { });
+                        return RedirectToAction("ChangePassword", "Manage", new { message = ManageController.ManageMessageId.PasswordBreached });
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:

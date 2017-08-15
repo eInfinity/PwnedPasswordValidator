@@ -215,9 +215,9 @@ namespace PwnedPasswordValidator.Controllers
 
         //
         // GET: /Manage/ChangePassword
-        public ActionResult ChangePassword(ManageMessageId? messageId)
+        public ActionResult ChangePassword(ManageMessageId? message)
         {
-            ViewBag.StatusMessage = messageId == ManageMessageId.PasswordBreached ? "It looks like your password may have been breached. We recommend you change it now" : "";
+            ViewBag.StatusMessage = message == ManageMessageId.PasswordBreached ? "It looks like your password may have been breached. We recommend you change it now" : "";
             return View();
         }
 
